@@ -77,7 +77,7 @@ class Query(object):
 			self.ger.mainControl()
 		amountResult = self.getSaleTotal(facility)
 		if len(amountResult) <= 0:
-			MSG =  None
+			MSG =  "今天[{0}]没有订单录入！".format(self.fcyDict[facility])
 		else:
 			MSG = "今天[{0}]的订单情况如下： \n".format(self.fcyDict[facility])
 			for cur in amountResult.keys():
@@ -86,7 +86,7 @@ class Query(object):
 				quantityResult = self.getSaleQuantity(facility,cur)
 				for quantity in quantityResult.keys():
 					MSG = MSG + "　　　　" + quantityResult[quantity] + u"\n"
-		MSG = MSG + "汇总数据:\n　　数量 :" + str(self.total["数量"]) + " PCS　\n　　金额约等于人民币 :" + str(self.total["金额"])
+			MSG = MSG + "汇总数据:\n　　数量 :" + str(self.total["数量"]) + " PCS　\n　　金额约等于人民币 :" + str(self.total["金额"])  + "\n http://121.46.30.178/todaySaleDetails"
 		self.total = {
 					"金额":0.0,
 					"数量": 0
@@ -107,8 +107,8 @@ if __name__ == '__main__':
 				"0501":"空冷事业部"
 	}
 	userDict = {
-			"罗博文":["ocwHT08BbAJvZ2Lj9o-fu7JJKWIw",["0101"]],
-			"俞凯":["ocwHT0yHEKfRw39oKIPWIYAvWM_Q",["0101","0102","0201","0202","0203","0301","0401","0501"]]
+			"罗博文":["ocwHT08BbAJvZ2Lj9o-fu7JJKWIw",["0101"]]
+			# "俞凯":["ocwHT0yHEKfRw39oKIPWIYAvWM_Q",["0101","0102","0201","0202","0203","0301","0401","0501"]]
 			# "李俊":["ocwHT05GGGEaGvKP6NdVhuuyL7bI",["0301"]]
 	}
 	qd = Query(fcyDict)

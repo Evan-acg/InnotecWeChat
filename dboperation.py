@@ -78,6 +78,20 @@ class DBOperation(object):
 			""".format(dateRange["start"],dateRange["end"])
 		return self.dbc.Query(SQL)
 
+	def getTodaySaleOrderDetails(self,facility):
+		dateRange = self.getDate.Today()
+		SQL = """SELECT T1.SOHNUM_0 N'销售订单号',
+						CONVERT(INT,T1.SOPLIN_0) N'销售订单行号',
+						T1.ITMREF_0 N'产品代码',
+						CONVERT(DECIMAL(18,2),T1.QTY_0) N'销售数量' 
+				FROM SORDERQ T1
+					LEFT JOIN SORDERP T2 ON T1.SOHNUM_0 = T2.SOHNUM_0 AND T1.SOPLIN_0 = T2.SOPLIN_0
+				WHERE T1.CREDAT_0 BETWEEN N'{1}' AND N'{2}'
+					AND T1.SALFCY_0 = N'{0}'
+					""".format(facility,dateRange["start"],dateRange["end"])
+		print SQL
+		return self.dbc.QueryWithColName(SQL)
+
 if __name__ == '__main__':
 	dbo = DBOperation()
-	dbo.getTodayQuantity('0101',u'中国元（人民币）')
+	print dbo.getTodaySaleOrderDetails('0201')

@@ -22,6 +22,7 @@ class Info(object):
 		url = "https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid={0}&secret={1}".format(self.appId,self.appSecret)
 		page = urllib.urlopen(url).read()
 		pageJson = json.loads(page)
+		print pageJson
 		self.accessToken= pageJson["access_token"]
 		self.dbo.insertAccessToken(self.accessToken)
 
@@ -76,7 +77,7 @@ class Info(object):
 		for ID in self.nameList.keys():
 			if not DBUserIDs.has_key(ID):
 				self.dbo.insertUserID(ID,self.nameList[ID])
-		self.checkIPs()
+		# self.checkIPs()
 	def getX3UserInfo(self,X3UserName):
 		self.X3NameList = self.dbo.getX3UserInfo(X3UserName)
 

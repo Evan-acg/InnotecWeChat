@@ -1,0 +1,23 @@
+$def with (facilit,Data,colName)
+<!doctype html>
+<html>
+	<head>
+		<title>亿诺科技$facilit销售数据</title>
+	</head>
+	<body>
+		<h1 align="center">亿诺科技$facilit销售数据</h1>
+		<div align="center">
+			<table align="center" border = "1">
+				<tr align="center">
+				$for col in colName:
+					<td width = "150px">$col</td>
+				</tr>
+				$for row in Data:
+				<tr>
+					$for col in colName:
+						<td>$row[col]</td>
+				</tr>
+			</table>
+		</div>
+	</body>
+</html>

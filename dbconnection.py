@@ -22,6 +22,14 @@ class DBConnection(object):
 		self.conn.commit()
 		return result
 
+	def QueryWithColName(self,SQL):
+		self.cur = self.conn.cursor(as_dict = True)
+		self.cur.execute(SQL)
+		result = self.cur.fetchall()
+		self.conn.commit()
+		self.cur = self.conn.cursor(as_dict = False)
+		return	result
+
 	def execute(self,SQL):
 		self.cur.execute(SQL)
 		self.conn.commit()
