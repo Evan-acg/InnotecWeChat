@@ -107,7 +107,7 @@ if __name__ == '__main__':
 				"0501":"空冷事业部"
 	}
 	userDict = {
-			"罗博文":["ocwHT08BbAJvZ2Lj9o-fu7JJKWIw",["0101"]]
+			"罗博文":["ocwHT08BbAJvZ2Lj9o-fu7JJKWIw",["0201"]]
 			# "俞凯":["ocwHT0yHEKfRw39oKIPWIYAvWM_Q",["0101","0102","0201","0202","0203","0301","0401","0501"]]
 			# "李俊":["ocwHT05GGGEaGvKP6NdVhuuyL7bI",["0301"]]
 	}
