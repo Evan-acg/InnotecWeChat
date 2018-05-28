@@ -1,23 +1,28 @@
-$def with (facilit,Data,colName)
+$def with (facilit,Data,colName,date)
 <!doctype html>
 <html>
 	<head>
 		<title>亿诺科技$facilit销售数据</title>
+		<style>
+			p.conment {font-style: italic}
+		</style>
 	</head>
 	<body>
-		<h1 align="center">亿诺科技$facilit销售数据</h1>
-		<div align="center">
-			<table align="center" border = "1">
+		<p align="center"><font size="20">亿诺科技$facilit销售数据</font></p>
+		<p align= "right" class="conment"><font size= "5">$date数据</font>
+		<div class="content">
+			<table border="1" width="1000PX" style="table-layout:fixed;" align="center">
 				<tr align="center">
-				$for col in colName:
-					<td width = "150px">$col</td>
+				$for name in colName:
+					<th width = "120px">$name</th>
 				</tr>
 				$for row in Data:
-				<tr>
-					$for col in colName:
-				</tr>
-						<td>$col</td>
-				</tr> 
+					<tr>
+					$for col in row:
+						<td>
+							$col
+						</td>
+					</tr>
 			</table>
 		</div>
 	</body>

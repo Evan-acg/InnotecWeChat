@@ -4,6 +4,7 @@
 
 import web
 from dboperation import DBOperation
+from getdate import GetDate
 import json
 
 
@@ -17,7 +18,9 @@ class TodaySaleDetails:
 	def GET(self):
 		filePath = "./facility.json"
 		with open(filePath,"r") as jsonFile:
-			facilityDict = json.loads(jsonFile.read())
+			facilityDict = json.loads(jsonFile.read(), encoding="utf-8")
+		gd = GetDate()
+		dateRange = gd.Today()
 		data = web.input()
 		colName = [
 			"销售订单号",
@@ -27,7 +30,7 @@ class TodaySaleDetails:
 		]
 		result = self.dbo.getTodaySaleOrderDetails(data.facility)
 		facility = web.template.frender("salesData.html")
-		return facility(facilityDict[data.facility],result,colName)
+		return facility(facilityDict[data.facility],result,colName,dateRange["start"])
 
 
 if __name__ == '__main__':
