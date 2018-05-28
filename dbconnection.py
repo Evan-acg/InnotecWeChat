@@ -2,17 +2,17 @@
 # filename: dbconnection.py
 
 import pymssql
-
+import json
 
 class DBConnection(object):
 	def __init__(self):
-		self.datehost = '192.168.0.5'
-		self.port = 1433
-		# self.datehost = '121.46.26.50'
-		# self.port = 4311
-		self.database = 'innotec'
-		self.user = 'INNO'
-		self.password = 'tiger'
+		with open("../dbconnection.json","r") as jsonFile:
+			dbcConfig = json.loads(jsonFile.read())
+		self.datehost = dbcConfig["datehost"]
+		self.port = dbcConfig["port"]
+		self.database = dbcConfig["database"]
+		self.user = dbcConfig["user"]
+		self.password = dbcConfig["password"]
 		self.conn = pymssql.connect(host = self.datehost, database = self.database, user = self.user, password = self.password, port = self.port)
 		self.cur = self.conn.cursor()
 		
@@ -22,13 +22,13 @@ class DBConnection(object):
 		self.conn.commit()
 		return result
 
-	def QueryWithColName(self,SQL):
-		self.cur = self.conn.cursor(as_dict = True)
-		self.cur.execute(SQL)
-		result = self.cur.fetchall()
-		self.conn.commit()
-		self.cur = self.conn.cursor(as_dict = False)
-		return	result
+	# def QueryWithColName(self,SQL):
+	# 	self.cur = self.conn.cursor(as_dict = True)
+	# 	self.cur.execute(SQL)
+	# 	result = self.cur.fetchall()
+	# 	self.conn.commit()
+	# 	self.cur = self.conn.cursor(as_dict = False)
+	# 	return	result
 
 	def execute(self,SQL):
 		self.cur.execute(SQL)

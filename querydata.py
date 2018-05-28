@@ -14,20 +14,21 @@ class TodaySaleDetails:
 		self.dbo = DBOperation()
 
 	def GET(self):
-		data = web.input(facility = none)
-		facility = data.facility
-		result = self.dbo.getTodaySaleOrderDetails('0201')
-		colName = []
-		for col in result[0]:
-			colName.append(col)
+		data = web.input()
+		colName = [
+			"销售订单号",
+			"销售订单行号",
+			"产品代码",
+			"产品数量"
+		]
+		result = self.dbo.getTodaySaleOrderDetails(data.facility)
 		facility = web.template.frender("salesData.html")
-		print data
-		return facility("MIG事业部",result,colName)
+		return facility("MIt事业部",result,colName)
 
 
 if __name__ == '__main__':
 	urls = (
-		"/todaySaleDetails/(.*?)","TodaySaleDetails"
+		"/todaySaleDetails","TodaySaleDetails"
 		)
 	app = web.application(urls, globals())
 	app.run()

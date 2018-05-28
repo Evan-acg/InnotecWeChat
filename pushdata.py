@@ -86,7 +86,8 @@ class Query(object):
 				quantityResult = self.getSaleQuantity(facility,cur)
 				for quantity in quantityResult.keys():
 					MSG = MSG + "　　　　" + quantityResult[quantity] + u"\n"
-			MSG = MSG + "汇总数据:\n　　数量 :" + str(self.total["数量"]) + " PCS　\n　　金额约等于人民币 :" + str(self.total["金额"])  + "\n http://121.46.30.178/todaySaleDetails"
+			MSG = MSG + "汇总数据:\n　　数量 :" + str(self.total["数量"]) + " PCS　\n　　金额约等于人民币 :" \
+				+ str(self.total["金额"])  + "\n http://121.46.30.178/todaySaleDetails?facility=" + facility
 		self.total = {
 					"金额":0.0,
 					"数量": 0
@@ -96,26 +97,20 @@ class Query(object):
 
 
 if __name__ == '__main__':
-	fcyDict = {
-				"0101":"OEM事业部",
-				"0102":"品牌事业部",
-				"0201":"MIG事业部",
-				"0202":"TIG事业部",
-				"0203":"PLA事业部",
-				"0301":"配件事业部",
-				"0401":"水冷事业部",
-				"0501":"空冷事业部"
-	}
+	filePath = "./facility.json"
+	with open(filePath,"r") as jsonFile:
+		fcyDict = json.loads(jsonFile.read())
+	filePath = "../weChat.json"
+	with open(filePath,"r") as jsonFile:
+		weChatConfig = json.loads(jsonFile.read())
 	userDict = {
-			"罗博文":["ocwHT08BbAJvZ2Lj9o-fu7JJKWIw",["0201"]]
+			"罗博文":["ocwHT08BbAJvZ2Lj9o-fu7JJKWIw",["0101"]]
 			# "俞凯":["ocwHT0yHEKfRw39oKIPWIYAvWM_Q",["0101","0102","0201","0202","0203","0301","0401","0501"]]
 			# "李俊":["ocwHT05GGGEaGvKP6NdVhuuyL7bI",["0301"]]
 	}
 	qd = Query(fcyDict)
-	appId = "wx30052641bcd38b10"
-	appSecret = "19f693b0ce091511374fc698f93cdcf5"
 	MSG = ""
-	gi = Info(appId,appSecret)
+	gi = Info(weChatConfig["appId"],weChatConfig["appSecret"])
 	gi.mainControl()
 	pd = PushData(gi.accessToken)
 	for userName in userDict.keys():
