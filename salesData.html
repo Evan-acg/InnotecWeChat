@@ -5,7 +5,7 @@ $def with (facilit,Data,colName,date)
 		<title>亿诺科技$facilit销售数据</title>
 		<style>
 			p.conment {font-style: italic;}
-			th { white-space: nowrap; }
+			th { white-space: nowrap; font-weight: bold;height: 30px }
 			td { text-align: center; white-space: nowrap; }
 		</style>
 	</head>
@@ -16,7 +16,7 @@ $def with (facilit,Data,colName,date)
 			<table border="1" align="center" width="95%" cellspacing="0">
 				<tr align="center">
 				$for name in colName:
-					<th width = "120px">$name</th>
+					<th>$name</th>
 				</tr>
 				$for row in Data:
 					<tr>
