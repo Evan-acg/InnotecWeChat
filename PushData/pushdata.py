@@ -23,7 +23,7 @@ class PushData(object):
 		self.gi = Info(weChatConfig["appId"],weChatConfig["appSecret"])
 		self.gi.mainControl()
 
-	def push(self,OPENID = "ocwHT08BbAJvZ2Lj9o-fu7JJKWIw",MSG):
+	def push(self,MSG,OPENID = "ocwHT08BbAJvZ2Lj9o-fu7JJKWIw"):
 		url = "https://api.weixin.qq.com/cgi-bin/message/custom/send?access_token={0}".format(self.gi.accessToken)
 		content = {"content":MSG}
 		postData = {
@@ -44,8 +44,8 @@ if __name__ == '__main__':
 	with open(filePath,"r") as jsonFile:
 		fcyDict = json.loads(jsonFile.read())
 	userDict = {
-			"罗博文":["ocwHT08BbAJvZ2Lj9o-fu7JJKWIw",["0101","0102"]]
-			# "俞凯":["ocwHT0yHEKfRw39oKIPWIYAvWM_Q",["0101","0102","0201","0202","0203","0301","0401","0501"]]
+			"罗博文":["ocwHT08BbAJvZ2Lj9o-fu7JJKWIw",["0101","0102","0201","0202","0203","0301","0401","0501"]],
+			"俞凯":["ocwHT0yHEKfRw39oKIPWIYAvWM_Q",["0101","0102","0201","0202","0203","0301","0401","0501"]]
 			# "李俊":["ocwHT05GGGEaGvKP6NdVhuuyL7bI",["0301"]]
 	}
 	qd = Query(fcyDict)
@@ -55,5 +55,5 @@ if __name__ == '__main__':
 		OPENID = userDict[userName][0]
 		for fcy in userDict[userName][1]:
 			MSG = qd.querySales(fcy)
-			pd.push(OPENID,MSG)
+			pd.push(MSG,OPENID)
 			# print qd.querySales(fcy)
