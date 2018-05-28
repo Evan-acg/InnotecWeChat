@@ -14,6 +14,9 @@ class TodaySaleDetails:
 		self.dbo = DBOperation()
 
 	def GET(self):
+		filePath = "./facility.json"
+		with open(filePath,"r") as jsonFile:
+			facilityDict = json.loads(jsonFile.read())
 		data = web.input()
 		colName = [
 			"销售订单号",
@@ -23,7 +26,7 @@ class TodaySaleDetails:
 		]
 		result = self.dbo.getTodaySaleOrderDetails(data.facility)
 		facility = web.template.frender("salesData.html")
-		return facility("MIt事业部",result,colName)
+		return facility(facilityDict[data.facility],result,colName)
 
 
 if __name__ == '__main__':
