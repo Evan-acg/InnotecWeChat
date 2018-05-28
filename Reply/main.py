@@ -1,9 +1,11 @@
 # -*- coding: utf-8 -*-
 # filename: main.py
 
+import sys
+sys.path.append("../")
 
 import web
-from handle import Handle
+from Reply.handle import Handle
 
 
 

@@ -3,8 +3,8 @@
 
 import hashlib
 import web
-from reply import reply
-from receive import receive
+from Reply import reply
+from Reply import receive
 
 
 class Handle:
@@ -12,16 +12,16 @@ class Handle:
 		try:
 			webData = web.data()
 			print "Handle Post webdata is ",webData
-			recMsg = receive.parser_xml(webData)
+			recMsg = receive.parse_xml(webData)
 			if isinstance(recMsg, receive.Msg) and recMsg.MsgType == "text":
 				toUser = recMsg.FromUserName
 				fromUser = recMsg.ToUserName
 				content = "test"
 				replyMsg = reply.TextMsg(toUser,fromUser,content)
 				return	replyMsg.send()
-		else:
-			print "Not Yet!"
-			return "Success!"
+			else:
+				print "Not Yet!"
+				return "Success!"
 		except Exception, Argument:
 			return Argument
 	def GET(self):

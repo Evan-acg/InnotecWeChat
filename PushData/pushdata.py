@@ -1,14 +1,16 @@
 # -*- coding: utf-8 -*-
 # filename: pushdata.py
 
+import sys
+sys.path.append("../")
 
 import urllib2
 import json
-from dboperation import DBOperation
-from getinfo import Info
-from getdate import GetDate
+from Public.dboperation import DBOperation
+from Public.getinfo import Info
+from Public.getdate import GetDate
 from decimal import Decimal
-from getexchangerate import GetExchangeRate
+from Public.getexchangerate import GetExchangeRate
 
 
 
@@ -97,10 +99,10 @@ class Query(object):
 
 
 if __name__ == '__main__':
-	filePath = "./facility.json"
+	filePath = "../public/facility.json"
 	with open(filePath,"r") as jsonFile:
 		fcyDict = json.loads(jsonFile.read())
-	filePath = "../weChat.json"
+	filePath = "../../weChat.json"
 	with open(filePath,"r") as jsonFile:
 		weChatConfig = json.loads(jsonFile.read())
 	userDict = {

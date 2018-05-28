@@ -16,7 +16,7 @@ class TodaySaleDetails:
 		self.dbo = DBOperation()
 
 	def GET(self):
-		filePath = "./facility.json"
+		filePath = "./public/facility.json"
 		with open(filePath,"r") as jsonFile:
 			facilityDict = json.loads(jsonFile.read(), encoding="utf-8")
 		gd = GetDate()
