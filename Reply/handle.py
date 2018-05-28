@@ -5,7 +5,7 @@ import hashlib
 import web
 from Reply import reply
 from Reply import receive
-
+from PushData.pushdata import PushData
 
 class Handle:
 	def POST(self):
@@ -19,6 +19,10 @@ class Handle:
 				content = "test"
 				replyMsg = reply.TextMsg(toUser,fromUser,content)
 				return	replyMsg.send()
+			# elif isinstance(recMsg, receive.Msg) and recMsg.MsgType == "event"
+			# 	pd = PushData()
+				
+			# 	pd.push(Msg)
 			else:
 				print "Not Yet!"
 				return "Success!"
