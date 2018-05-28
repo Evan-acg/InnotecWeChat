@@ -4,14 +4,16 @@ $def with (facilit,Data,colName,date)
 	<head>
 		<title>亿诺科技$facilit销售数据</title>
 		<style>
-			p.conment {font-style: italic}
+			p.conment {font-style: italic;}
+			th { white-space: nowrap; }
+			td { text-align: center; white-space: nowrap; }
 		</style>
 	</head>
 	<body>
 		<p align="center"><font size="20">亿诺科技$facilit销售数据</font></p>
 		<p align= "right" class="conment"><font size= "5">$date数据</font>
 		<div class="content">
-			<table border="1" width="1000PX" style="table-layout:fixed;" align="center">
+			<table border="1" align="center" width="95%" cellspacing="0">
 				<tr align="center">
 				$for name in colName:
 					<th width = "120px">$name</th>

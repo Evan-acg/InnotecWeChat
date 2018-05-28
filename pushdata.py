@@ -87,7 +87,7 @@ class Query(object):
 				for quantity in quantityResult.keys():
 					MSG = MSG + "　　　　" + quantityResult[quantity] + u"\n"
 			MSG = MSG + "汇总数据:\n　　数量 :" + str(self.total["数量"]) + " PCS　\n　　金额约等于人民币 :" \
-				+ str(self.total["金额"])  + "\n http://121.46.30.178/todaySaleDetails?facility=" + facility
+				+ str(self.total["金额"])  + "\n <a href = 'http://121.46.30.178/todaySaleDetails?facility=" + facility + "'>点此查看明细</a>"
 		self.total = {
 					"金额":0.0,
 					"数量": 0
@@ -104,7 +104,7 @@ if __name__ == '__main__':
 	with open(filePath,"r") as jsonFile:
 		weChatConfig = json.loads(jsonFile.read())
 	userDict = {
-			"罗博文":["ocwHT08BbAJvZ2Lj9o-fu7JJKWIw",["0101"]]
+			"罗博文":["ocwHT08BbAJvZ2Lj9o-fu7JJKWIw",["0101","0102"]]
 			# "俞凯":["ocwHT0yHEKfRw39oKIPWIYAvWM_Q",["0101","0102","0201","0202","0203","0301","0401","0501"]]
 			# "李俊":["ocwHT05GGGEaGvKP6NdVhuuyL7bI",["0301"]]
 	}

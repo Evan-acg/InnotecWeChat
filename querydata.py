@@ -26,7 +26,17 @@ class TodaySaleDetails:
 			"销售订单号",
 			"销售订单行号",
 			"产品代码",
-			"产品数量"
+			"产品数量",
+			"毛价",
+			"小计",
+			"产品名称",
+			"订单客户",
+			"客户名称",
+			"真实客户",
+			"客户名称",
+			"备注",
+			"客户订单号",
+			"客户订单行号"
 		]
 		result = self.dbo.getTodaySaleOrderDetails(data.facility)
 		facility = web.template.frender("salesData.html")
