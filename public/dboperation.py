@@ -105,6 +105,37 @@ class DBOperation(object):
 					""".format(facility,dateRange["start"],dateRange["end"])
 		return self.dbc.Query(SQL)
 
+	def authorize(self, OPENID, facility):
+		SQL = """
+			INSERT INTO WECHATAUTH(USERID_0,DIMENSION_0,FCY_0,CREDATTIM_0,UPDDATTIM_0,AUUID_0,CREUSR_0,UPDUSR_0)
+					VALUES(N'{0}',N'SOP',N'{1}',GETDATE(),GETDATE(),NEWID(),N'ADMIN',N'ADMIN')
+		""".format(OPENID, facility)
+		self.dbc.execute(SQL)
+
+	def deauthorize(self, *args):
+		argsCount = len(args)
+		if argsCount == 0:
+			SQL = "DELETE FROM WECHATAUTH"
+		elif argsCount == 2:
+			OPENID = args[0]
+			facility = args[1]
+			SQL = """
+				DELETE FROM WECHATAUTH WHERE USERID_0 = N'{0}' AND DEMENSION_0 = N'SOP' AND FCY_0 = N'{1}'
+			""".format(OPENID, facility)
+		self.dbc.execute(SQL)
+
+	def getAuthList(self,*args):
+		argsCount = len(args)
+		if argsCount == 0:
+			SQL = "SELECT USERID_0,DIMENSION_0,FCY_0 FROM WECHATAUTH"
+		elif argsCount == 2:
+			SQL = """
+				SELECT USERID_0,DIMENSION_0,FCY_0 FROM WECHATAUTH WHERE USERID_0 NOT IN(N'{0}' ) AND DIMENSION_0 NOT IN(N'') AND FCY_0 NOT IN(N'{1}')
+			""".format(OPENID, facility)
+		return self.dbc.Query(SQL)
+
+
+
 if __name__ == '__main__':
 	dbo = DBOperation()
 	print dbo.getTodaySaleOrderDetails('0201')

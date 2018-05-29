@@ -1,0 +1,7 @@
+{
+	"datehost":"192.168.0.5",
+	"port":1433,
+	"database":"innotec",
+	"user":"INNO",
+	"password":"tiger"
+}

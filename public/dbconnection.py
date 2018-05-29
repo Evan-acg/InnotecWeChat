@@ -1,12 +1,14 @@
 # -*- coding: utf-8 -*-
 # filename: dbconnection.py
-
+import sys
+sys.path.append("../")
 import pymssql
 import json
 
+
 class DBConnection(object):
 	def __init__(self):
-		with open("../../dbconnection.json","r") as jsonFile:
+		with open("../Public/dbconnection.json","r") as jsonFile:
 			dbcConfig = json.loads(jsonFile.read())
 		self.datehost = dbcConfig["datehost"]
 		self.port = dbcConfig["port"]

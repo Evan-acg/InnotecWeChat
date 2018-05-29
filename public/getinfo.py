@@ -5,6 +5,7 @@ import urllib
 import urllib2
 import json
 from dboperation import DBOperation
+from jsonoperation import ReadJson
 import sys
 reload(sys)
 sys.setdefaultencoding("utf-8")
@@ -92,10 +93,14 @@ class Info(object):
 
 
 if __name__ == '__main__':
-	# print sys.getdefaultencoding()
-	appId = "wx30052641bcd38b10"
-	appSecret = "19f693b0ce091511374fc698f93cdcf5"
+	rj = ReadJson()
+	filePath = "../../weChat.json"
+	config = rj.readJson(filePath)
+	appId = config["appId"]
+	appSecret = config["appSecret"]
 	gi = Info(appId,appSecret)
 	gi.mainControl()
 	# gi.getX3UserInfo("博文")
-	print gi.userList
+	for Name in gi.nameList:
+		print Name
+		print gi.nameList[Name]

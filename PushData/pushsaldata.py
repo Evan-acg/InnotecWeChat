@@ -12,7 +12,6 @@ from Public.getdate import GetDate
 from decimal import Decimal
 from Public.getexchangerate import GetExchangeRate
 from PushData.querydata import Query
-from Public.jsonoperation import ReadJson
 
 
 
@@ -26,14 +25,13 @@ class PushData(object):
 
 	def push(self,MSG,OPENID = "ocwHT08BbAJvZ2Lj9o-fu7JJKWIw"):
 		url = "https://api.weixin.qq.com/cgi-bin/message/custom/send?access_token={0}".format(self.gi.accessToken)
-		content = {"content":MSG.encode("utf-8")}
+		content = {"content":MSG}
 		postData = {
 				"touser":OPENID,
 				"msgtype":"text",
 				"text":content
 		}
 		postData = json.dumps(postData,ensure_ascii=False)
-		postData = postData.encode("utf-8")
 		req = urllib2.Request(url = url, data = postData)
 		page = urllib2.urlopen(req).read()
 		print page
@@ -42,16 +40,23 @@ class PushData(object):
 
 
 if __name__ == '__main__':
-	rj = ReadJson()
-	dbo = DBOperation()
 	filePath = "../public/facility.json"
-	fcyDict = rj.readJson(filePath)
-	userDict = dbo.getAuthList()
+	with open(filePath,"r") as jsonFile:
+		fcyDict = json.loads(jsonFile.read())
+	userDict = {
+			# "罗博文":["ocwHT08BbAJvZ2Lj9o-fu7JJKWIw",["0101","0102"]],
+			# "俞凯":["ocwHT0yHEKfRw39oKIPWIYAvWM_Q",["0101","0102","0201","0202","0203","0301","0401","0501"]],
+			"顾蓉蓉":["ocwHT02aKru4DXzNq0Smg-2VYrWA",["0101","0201","0202","0203","0301","0401","0501"]]，
+			"徐标":["ocwHT02hzAkhUnANysWlpHiQlTE4",["0701"]]，
+			"王晓丽":["ocwHT09qxLNWr9FZ1pUonlkkLFvc",["0301"]]
+			# "李俊":["ocwHT05GGGEaGvKP6NdVhuuyL7bI",["0301"]]
+	}
 	qd = Query(fcyDict)
+	MSG = ""
 	pd = PushData()
-	for userName in userDict:
-		OPENID = userName[0]
-		facility = userName[2]
-		message = qd.querySales(facility)
-		pd.push(message,OPENID)
-		# 	# print qd.querySales(fcy)
+	for userName in userDict.keys():
+		OPENID = userDict[userName][0]
+		for fcy in userDict[userName][1]:
+			MSG = qd.querySales(fcy)
+			pd.push(MSG,OPENID)
+			# print qd.querySales(fcy)
