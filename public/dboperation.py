@@ -79,21 +79,21 @@ class DBOperation(object):
 		return self.dbc.Query(SQL)
 
 	def getTodaySaleOrderDetails(self, facility, dateRange):
-		SQL = """
-				SELECT T4.BPCNAM_0,
-						T1.SOHNUM_0,
-						CONVERT(INT,T1.SOPLIN_0),
+		SQL = """		SELECT
+						T3.BPCNAM_0,
+						T4.BPCNAM_0,
 						T1.ITMREF_0,
+						T2.ITMDES1_0,
 						CONVERT(DECIMAL(18,2),T1.QTY_0),
 						CONVERT(DECIMAL(18,2),T2.GROPRI_0),
 						CONVERT(DECIMAL(18,2),T1.QTY_0 * T2.GROPRI_0),
-						T2.ITMDES1_0,
 						T3.BPCORD_0,
-						T3.BPCNAM_0,
 						T3.YBPCSHO_0,
 						T1.ZRMK_0,
 						T1.ZCUSNUM_0,
 						T1.ZCUSNUMLIN_0
+						CONVERT(INT,T1.SOPLIN_0),
+						T1.SOHNUM_0,
 				FROM SORDERQ T1
 					LEFT JOIN SORDERP T2 ON T1.SOHNUM_0 = T2.SOHNUM_0 AND T1.SOPLIN_0 = T2.SOPLIN_0
 					LEFT JOIN SORDER T3 ON T1.SOHNUM_0 = T3.SOHNUM_0

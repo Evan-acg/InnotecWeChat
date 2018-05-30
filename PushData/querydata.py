@@ -90,20 +90,20 @@ class TodaySaleDetails:
 		gd = GetDate()
 		data = web.input()
 		colName = [
-			"客户名称",
-			"销售订单号",
-			"销售订单行号",
+			"订单客户名称",
+			"真实客户名称",
 			"产品代码",
+			"产品名称",
 			"产品数量",
 			"毛价",
 			"小计",
-			"产品名称",
-			"订单客户",
-			"真实客户",
-			"客户名称",
+			"真实客户编码",
+			"订单客户编码",
 			"备注",
 			"客户订单号",
 			"客户订单行号"
+			"销售订单号",
+			"销售订单行号",
 		]
 		result = self.dbo.getTodaySaleOrderDetails(data.facility, data.date)
 		randerTemplatePage = os.path.dirname((os.path.dirname(__file__))) + "/Static/Html/salesData.html"
