@@ -101,9 +101,9 @@ class TodaySaleDetails:
 			"订单客户编码",
 			"备注",
 			"客户订单号",
-			"客户订单行号"
+			"客户订单行号",
 			"销售订单号",
-			"销售订单行号",
+			"销售订单行号"
 		]
 		result = self.dbo.getTodaySaleOrderDetails(data.facility, data.date)
 		randerTemplatePage = os.path.dirname((os.path.dirname(__file__))) + "/Static/Html/salesData.html"
