@@ -106,7 +106,7 @@ class TodaySaleDetails:
 			"客户订单行号"
 		]
 		result = self.dbo.getTodaySaleOrderDetails(data.facility, data.date)
-		randerTemplatePage = os.path.dirname((os.path.dirname(__file__))) + "/Static/Json/salesData.html"
+		randerTemplatePage = os.path.dirname((os.path.dirname(__file__))) + "/Static/Html/salesData.html"
 		facility = web.template.frender(randerTemplatePage)
 		return facility(facilityDict[data.facility],result,colName,data.date)
 
