@@ -1,11 +1,7 @@
 # -*- coding: utf-8 -*-
 # filename: authorization.py
 
-
-import sys
-sys.path.append("../")
-
-
+import common
 from Public.jsonoperation import ReadJson
 from Public.dboperation import DBOperation
 
@@ -16,9 +12,8 @@ class Authorization:
 		self.dbo = DBOperation()
 
 
-	def authorize(self):
-		self.dbo.authorize()
-
+	def authorize(self, OPENID, facility):
+		self.dbo.authorize(OPENID, facility)
 	def deauthorize(self):
 		self.dbo.deauthorize()
 
@@ -30,7 +25,7 @@ class Authorization:
 			OPENID = NameList[Name]["OPENID"]
 			facility = NameList[Name]["facility"]
 			for fcy in facility:
-				self.dbo.authorize(OPENID, fcy)
+				self.authorize(OPENID, fcy)
 
 
 

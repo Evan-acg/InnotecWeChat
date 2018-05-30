@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 # filename: getinfo.py
-
+import common
 import urllib
 import urllib2
 import json

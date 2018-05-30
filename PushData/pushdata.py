@@ -1,24 +1,20 @@
 # -*- coding: utf-8 -*-
 # filename: pushdata.py
 
-import sys
-sys.path.append("../")
-
 import urllib2
 import json
+import os
+import common
 from Public.dboperation import DBOperation
 from Public.getinfo import Info
-from Public.getdate import GetDate
-from decimal import Decimal
-from Public.getexchangerate import GetExchangeRate
 from PushData.querydata import Query
 from Public.jsonoperation import ReadJson
 
 
 
-class PushData(object):
+class PushSaleData(object):
 	def __init__(self):
-		filePath = "../../weChat.json"
+		filePath = os.path.dirname(os.path.dirname((os.path.dirname(__file__)))) + "/weChat.json"
 		with open(filePath,"r") as jsonFile:
 			weChatConfig = json.loads(jsonFile.read())
 		self.gi = Info(weChatConfig["appId"],weChatConfig["appSecret"])
@@ -44,11 +40,11 @@ class PushData(object):
 if __name__ == '__main__':
 	rj = ReadJson()
 	dbo = DBOperation()
-	filePath = "../public/facility.json"
+	filePath = os.path.dirname((os.path.dirname(__file__))) + "/Public/facility.json"
 	fcyDict = rj.readJson(filePath)
 	userDict = dbo.getAuthList()
 	qd = Query(fcyDict)
-	pd = PushData()
+	pd = PushSaleData()
 	for userName in userDict:
 		OPENID = userName[0]
 		facility = userName[2]

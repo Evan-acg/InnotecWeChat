@@ -1,17 +1,15 @@
 # -*- coding: utf-8 -*-
 # filename: pushdata.py
 
-import sys
-sys.path.append("../")
 
 import urllib2
 import json
-from Public.dboperation import DBOperation
-from Public.getinfo import Info
-from Public.getdate import GetDate
+from ..Public.dboperation import DBOperation
+from ..Public.getinfo import Info
+from ..Public.getdate import GetDate
 from decimal import Decimal
-from Public.getexchangerate import GetExchangeRate
-from PushData.querydata import Query
+from ..Public.getexchangerate import GetExchangeRate
+from ..PushData.querydata import Query
 
 
 
@@ -46,8 +44,8 @@ if __name__ == '__main__':
 	userDict = {
 			# "罗博文":["ocwHT08BbAJvZ2Lj9o-fu7JJKWIw",["0101","0102"]],
 			# "俞凯":["ocwHT0yHEKfRw39oKIPWIYAvWM_Q",["0101","0102","0201","0202","0203","0301","0401","0501"]],
-			"顾蓉蓉":["ocwHT02aKru4DXzNq0Smg-2VYrWA",["0101","0201","0202","0203","0301","0401","0501"]]，
-			"徐标":["ocwHT02hzAkhUnANysWlpHiQlTE4",["0701"]]，
+			"顾蓉蓉":["ocwHT02aKru4DXzNq0Smg-2VYrWA",["0101","0201","0202","0203","0301","0401","0501"]],
+			"徐标":["ocwHT02hzAkhUnANysWlpHiQlTE4",["0701"]],
 			"王晓丽":["ocwHT09qxLNWr9FZ1pUonlkkLFvc",["0301"]]
 			# "李俊":["ocwHT05GGGEaGvKP6NdVhuuyL7bI",["0301"]]
 	}

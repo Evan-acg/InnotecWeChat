@@ -1,9 +1,7 @@
 # -*- coding: utf-8 -*-
 # filename: querydata.py
 
-import sys
-sys.path.append("../")
-
+import common
 import web
 from Public.dboperation import DBOperation
 from Public.getdate import GetDate
@@ -90,6 +88,7 @@ class TodaySaleDetails:
 		dateRange = gd.Today()
 		data = web.input()
 		colName = [
+			"客户名称",
 			"销售订单号",
 			"销售订单行号",
 			"产品代码",
@@ -98,7 +97,6 @@ class TodaySaleDetails:
 			"小计",
 			"产品名称",
 			"订单客户",
-			"客户名称",
 			"真实客户",
 			"客户名称",
 			"备注",
