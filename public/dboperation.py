@@ -78,7 +78,7 @@ class DBOperation(object):
 			""".format(dateRange["start"],dateRange["end"])
 		return self.dbc.Query(SQL)
 
-	def getTodaySaleOrderDetails(self,facility dateRange):
+	def getTodaySaleOrderDetails(self, facility, dateRange):
 		SQL = """
 				SELECT T1.SOHNUM_0,
 						CONVERT(INT,T1.SOPLIN_0),
