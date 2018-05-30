@@ -80,7 +80,8 @@ class DBOperation(object):
 
 	def getTodaySaleOrderDetails(self, facility, dateRange):
 		SQL = """
-				SELECT T1.SOHNUM_0,
+				SELECT T4.BPCNAM_0,
+						T1.SOHNUM_0,
 						CONVERT(INT,T1.SOPLIN_0),
 						T1.ITMREF_0,
 						CONVERT(DECIMAL(18,2),T1.QTY_0),
@@ -90,7 +91,6 @@ class DBOperation(object):
 						T3.BPCORD_0,
 						T3.BPCNAM_0,
 						T3.YBPCSHO_0,
-						T4.BPCNAM_0,
 						T1.ZRMK_0,
 						T1.ZCUSNUM_0,
 						T1.ZCUSNUMLIN_0
