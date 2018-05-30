@@ -3,6 +3,7 @@
 
 import common
 import web
+import os
 from Public.dboperation import DBOperation
 from Public.getdate import GetDate
 from Public.getexchangerate import GetExchangeRate
