@@ -54,6 +54,8 @@ class Query(object):
 			return ResultDict
 
 	def querySales(self,facility):
+		gd = GetDate()
+		dateRange = gd.Today()
 		rate = self.dbo.selectExchangeRate()
 		if len(rate) <= 0:
 			self.ger.mainControl()
@@ -69,7 +71,7 @@ class Query(object):
 				for quantity in quantityResult.keys():
 					MSG = MSG + "　　　　" + quantityResult[quantity] + u"\n"
 			MSG = MSG + "汇总数据:\n　　数量 :" + str(self.total["数量"]) + " PCS　\n　　金额约等于人民币 :" \
-				+ str(self.total["金额"])  + "\n <a href = 'http://121.46.30.178/todaySaleDetails?facility=" + facility + "'>点此查看明细</a>"
+				+ str(self.total["金额"]) + "\n <a href = 'http://121.46.30.178/todaySaleDetails?facility=" + facility + "&date=" + dateRange["start"] +"'>点此查看明细</a>"
 		self.total = {
 					"金额":0.0,
 					"数量": 0
@@ -81,11 +83,10 @@ class TodaySaleDetails:
 		self.dbo = DBOperation()
 
 	def GET(self):
-		filePath = "../public/facility.json"
+		filePath = os.path.dirname((os.path.dirname(__file__))) + "/Static/Json/facility.json"
 		with open(filePath,"r") as jsonFile:
 			facilityDict = json.loads(jsonFile.read(), encoding="utf-8")
 		gd = GetDate()
-		dateRange = gd.Today()
 		data = web.input()
 		colName = [
 			"客户名称",
@@ -103,9 +104,9 @@ class TodaySaleDetails:
 			"客户订单号",
 			"客户订单行号"
 		]
-		result = self.dbo.getTodaySaleOrderDetails(data.facility)
-		facility = web.template.frender("salesData.html")
-		return facility(facilityDict[data.facility],result,colName,dateRange["start"])
+		result = self.dbo.getTodaySaleOrderDetails(data.facility, data.date)
+		facility = web.template.frender("../Static/Html/salesData.html")
+		return facility(facilityDict[data.facility],result,colName,data.date)
 
 
 if __name__ == '__main__':

@@ -78,8 +78,7 @@ class DBOperation(object):
 			""".format(dateRange["start"],dateRange["end"])
 		return self.dbc.Query(SQL)
 
-	def getTodaySaleOrderDetails(self,facility):
-		dateRange = self.getDate.Today()
+	def getTodaySaleOrderDetails(self,facility dateRange):
 		SQL = """
 				SELECT T1.SOHNUM_0,
 						CONVERT(INT,T1.SOPLIN_0),
@@ -99,10 +98,10 @@ class DBOperation(object):
 					LEFT JOIN SORDERP T2 ON T1.SOHNUM_0 = T2.SOHNUM_0 AND T1.SOPLIN_0 = T2.SOPLIN_0
 					LEFT JOIN SORDER T3 ON T1.SOHNUM_0 = T3.SOHNUM_0
 					LEFT JOIN BPCUSTOMER T4 ON T3.YBPCSHO_0 = T4.BPCNUM_0
-				WHERE T1.CREDAT_0 BETWEEN N'{1}' AND N'{2}'
+				WHERE T1.CREDAT_0 BETWEEN N'{1}' AND N'{1}'
 					AND T1.SALFCY_0 = N'{0}'
 				ORDER BY T1.SOHNUM_0,T1.SOPLIN_0
-					""".format(facility,dateRange["start"],dateRange["end"])
+					""".format(facility,dateRange)
 		return self.dbc.Query(SQL)
 
 	def authorize(self, OPENID, facility):

@@ -40,7 +40,7 @@ class PushSaleData(object):
 if __name__ == '__main__':
 	rj = ReadJson()
 	dbo = DBOperation()
-	filePath = os.path.dirname((os.path.dirname(__file__))) + "/Public/facility.json"
+	filePath = os.path.dirname((os.path.dirname(__file__))) + "/Static/Json/facility.json"
 	fcyDict = rj.readJson(filePath)
 	userDict = dbo.getAuthList()
 	qd = Query(fcyDict)

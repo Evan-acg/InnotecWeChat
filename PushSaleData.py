@@ -17,7 +17,7 @@ class RunPushSales(PushSaleData):
 if __name__ == '__main__':
 	rj = ReadJson()
 	dbo = DBOperation()
-	filePath = "./Public/facility.json"
+	filePath = "./Static/Json/facility.json"
 	fcyDict = rj.readJson(filePath)
 	userDict = dbo.getAuthList()
 	qd = Query(fcyDict)

@@ -2,6 +2,7 @@
 # filename: authorization.py
 
 import common
+import os
 from Public.jsonoperation import ReadJson
 from Public.dboperation import DBOperation
 
@@ -18,8 +19,8 @@ class Authorization:
 		self.dbo.deauthorize()
 
 	def run(self):
-		fielPath = "../NameList.json"
-		NameList = self.rj.readJson(fielPath)
+		filePath = os.path.dirname((os.path.dirname(__file__))) + "/Static/Json/NameList.json"
+		NameList = self.rj.readJson(filePath)
 		self.dbo.deauthorize()
 		for Name in NameList:
 			OPENID = NameList[Name]["OPENID"]

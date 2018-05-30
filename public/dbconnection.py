@@ -10,7 +10,7 @@ import json
 
 class DBConnection(object):
 	def __init__(self):
-		filePath = os.path.dirname((os.path.dirname(__file__))) + "/Public/dbconnection.json"
+		filePath = os.path.dirname((os.path.dirname(__file__))) + "/Static/Json/dbconnection.json"
 		with open(filePath, "r") as jsonFile:
 			dbcConfig = json.loads(jsonFile.read())
 		self.datehost = dbcConfig["datehost"]
