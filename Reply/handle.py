@@ -19,6 +19,7 @@ class Handle:
 			if isinstance(recMsg, receive.Msg) and recMsg.MsgType == "text" and recMsg.Content.upper() == "SOP01":
 				pd = PushSaleData()
 				pd.run()
+				return "Success!"
 			elif isinstance(recMsg, receive.Msg) and recMsg.MsgType == "text":
 				toUser = recMsg.FromUserName
 				fromUser = recMsg.ToUserName
@@ -42,7 +43,6 @@ class Handle:
 				replyMsg = reply.TextMsg(toUser,fromUser,content)
 				return	replyMsg.send()
 			else:
-				print "Not Yet!"
 				return "Success!"
 		except Exception, Argument:
 			return Argument
