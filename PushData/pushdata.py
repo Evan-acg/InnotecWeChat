@@ -37,12 +37,12 @@ class PushSaleData(ReadConfig):
 
 	def run(self, *agvs):
 		parameterCount = len(agvs)
+		print parameterCount
 		dbo = DBOperation()
 		if parameterCount == 0:
 			userDict = dbo.getAuthList()
 		elif parameterCount == 1:
 			userDict = dbo.getAuthList(agvs[0])
-		print userDict
 		qd = Query(self.fcyDict)
 		for userName in userDict:
 			OPENID = userName[0]

@@ -15,7 +15,7 @@ import datetime
 class Handle:
 	def __init__(self):
 		self.pd = PushSaleData()
-	def returnQueryMessage(self):
+	def returnQueryMessage(self, recMsg):
 		self.pd.run(recMsg.FromUserName)
 		return ""
 	def returnSessionTime(self,recMsg):
@@ -48,7 +48,7 @@ class Handle:
 			webData = web.data()
 			recMsg = receive.parse_xml(webData)
 			if isinstance(recMsg, receive.Msg) and recMsg.MsgType == "text" and recMsg.Content.upper() == "SOP01":
-				return self.returnQueryMessage()
+				return self.returnQueryMessage(recMsg)
 			elif isinstance(recMsg, receive.Msg) and recMsg.MsgType == "text":
 				return self.returnSessionTime(recMsg)
 			elif isinstance(recMsg, receive.Msg) and recMsg.MsgType == "event" and recMsg.Event == "subscribe":
