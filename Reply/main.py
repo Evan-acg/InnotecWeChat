@@ -13,5 +13,4 @@ if __name__ == '__main__':
 			'/wx','Handle',
 		)
 	app = web.application(urls, globals())
-
 	app.run()

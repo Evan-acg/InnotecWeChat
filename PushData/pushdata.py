@@ -14,7 +14,7 @@ class ReadConfig:
 	def __init__(self):
 		rj = ReadJson()
 		filePath = os.path.dirname((os.path.dirname(__file__))) + "/Static/Json/facility.json"
-		fcyDict = rj.readJson(filePath)
+		self.fcyDict = rj.readJson(filePath)
 		filePath = os.path.dirname(os.path.dirname((os.path.dirname(__file__)))) + "/weChat.json"
 		weChatConfig = rj.readJson(filePath)
 		self.gi = Info(weChatConfig["appId"],weChatConfig["appSecret"])
@@ -47,7 +47,7 @@ class PushSaleData(object):
 			userDict = dbo.getAuthList()
 		elif parameterCount == 1:
 			userDict = dbo.getAuthList(agvs[0])
-		qd = Query(fcyDict)
+		qd = Query(self.rc.fcyDict)
 		for userName in userDict:
 			OPENID = userName[0]
 			facility = userName[2]
