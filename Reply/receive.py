@@ -24,9 +24,11 @@ class Msg(object):
 		self.CreateTime = xmlData.find('CreateTime').text
 		self.MsgType = xmlData.find('MsgType').text
 class CommonMsg(Msg):
+	def __init__(self, xmlData):
+		Msg.__init__(self, xmlData)
 		self.MsgId = xmlData.find('MsgId').text
 class EventMsg(Msg):
-	def __init__(sell, xmlData):
+	def __init__(self, xmlData):
 		Msg.__init__(self, xmlData)
 		self.Event = xmlData.find("Event").text
 class TextMsg(CommonMsg):
