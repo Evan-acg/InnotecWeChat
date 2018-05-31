@@ -101,7 +101,7 @@ if __name__ == '__main__':
 	config = rj.readJson(filePath)
 	appId = config["appId"]
 	appSecret = config["appSecret"]
-	gi = Info(appId,appSecret)
+	gi = Info()
 	gi.mainControl()
 	# gi.getX3UserInfo("博文")
 	for Name in gi.nameList:

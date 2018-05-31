@@ -26,7 +26,6 @@ class Handle:
 		replyMsg = reply.TextMsg(toUser,fromUser,content)
 		return  replyMsg.send()
 	def returnSubscribeMessage(self,recMsg):
-		print 1
 		toUser = recMsg.FromUserName
 		fromUser = recMsg.ToUserName
 		content = u"""
@@ -43,7 +42,8 @@ class Handle:
 		gi.mainControl()
 		dbo = DBOperation()
 		nickName = dbo.getUserName(toUser)[0][0]
-		NewSubscribe = "新用户的OPENID：{0}，用户名是：{1}！".format(toUser, nickName)
+		newSubscribe = "新用户的OPENID：{0}，用户名是：{1}！".format(toUser, nickName)
+		print newSubscribe
 		pd.Push(NewSubscribe)
 		return replyMsg.send()
 	def POST(self):
