@@ -10,7 +10,7 @@ from bs4 import BeautifulSoup
 
 
 def pushTo():
-	url = "http://localhost:8080/wx"
+	url = "http://121.46.30.178/wx"
 	xml = """
 		<xml>
 			<ToUserName><![CDATA[公众号]]></ToUserName>
