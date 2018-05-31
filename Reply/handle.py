@@ -41,7 +41,7 @@ class Handle:
 		dbo = DBOperation()
 		nickName = dbo.getUserName(toUser)[0][0]
 		newSubscribe = "新用户的OPENID：{0}，用户名是：{1}！".format(toUser, nickName)
-		self.pd.push(NewSubscribe.encode("utf-8"))
+		self.pd.push(NewSubscribe.encode("utf-8"),"ocwHT08BbAJvZ2Lj9o-fu7JJKWIw")
 		return ""
 	def POST(self):
 		try:

@@ -26,7 +26,7 @@ class DBOperation(object):
 
 	def getUserName(self, OPENID):
 		SQL = u"""SELECT USERNAME_0 FROM WECHATUSER WHERE USERID_0 = N'{0}'""".format(OPENID)
-		return self.dbc.Query(OPENID)
+		return self.dbc.Query(SQL)
 
 	def insertUserID(self,ID, userName):
 		SQL = u"""INSERT INTO WECHATUSER(USERID_0,USERNAME_0,CREDATTIM_0,UPDDATTIM_0,AUUID_0,CREUSR_0,UPDUSR_0)
