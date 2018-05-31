@@ -28,7 +28,7 @@ class Handle:
 	def returnSubscribeMessage(self,recMsg):
 		toUser = recMsg.FromUserName
 		fromUser = recMsg.ToUserName
-		content = u"""
+		content = """
 				欢迎来到亿诺股份公司消息推送系统！
 					当前实现功能有：
 						1.查询当日当前订单情况
@@ -36,8 +36,8 @@ class Handle:
 								回复代码SOP01
 							02.自动推送
 								于每天晚上20：00自动推送，收到消息后请回复刷新会话时间，回复任意字符均可
-			""".encode("utf-8")
-		replyMsg = reply.TextMsg(toUser,fromUser,content)
+			"""
+		replyMsg = reply.TextMsg(toUser,fromUser,content.encode("utf-8"))
 		gi = Info()
 		gi.mainControl()
 		dbo = DBOperation()
