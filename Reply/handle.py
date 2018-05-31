@@ -23,9 +23,10 @@ class Handle:
 		fromUser = recMsg.ToUserName
 		limitDate = (datetime.datetime.now() + datetime.timedelta(days = 1)).strftime("%Y-%m-%d %H:%M:%S")
 		content = u"本次会话到期时间为{0}！".format(limitDate)
-		replyMsg = reply.TextMsg(toUser,fromUser,content)
-		print relyMsg.send()
-		return  replyMsg.send()
+		# replyMsg = reply.TextMsg(toUser,fromUser,content)
+		self.pd.push(content, toUser)
+		# print relyMsg.send()
+		# return  replyMsg.send()
 	def returnSubscribeMessage(self,recMsg):
 		toUser = recMsg.FromUserName
 		fromUser = recMsg.ToUserName
