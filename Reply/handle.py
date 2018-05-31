@@ -52,11 +52,11 @@ class Handle:
 			print "Handle Post webdata is ",webData
 			recMsg = receive.parse_xml(webData)
 			if isinstance(recMsg, receive.Msg) and recMsg.MsgType == "text" and recMsg.Content.upper() == "SOP01":
-				self.returnQueryMessage()
+				return self.returnQueryMessage()
 			elif isinstance(recMsg, receive.Msg) and recMsg.MsgType == "text":
-				self.returnSessionTime(recMsg)
+				return self.returnSessionTime(recMsg)
 			elif isinstance(recMsg, receive.Msg) and recMsg.MsgType == "event" and recMsg.Event == "subscribe":
-				self.returnSubscribeMessage(recMsg)
+				return self.returnSubscribeMessage(recMsg)
 			else:
 				return "Success!"
 		except Exception, Argument:
