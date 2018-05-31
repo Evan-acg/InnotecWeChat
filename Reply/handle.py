@@ -25,7 +25,7 @@ class Handle:
 		content = u"本次会话到期时间为{0}！".format(limitDate)
 		replyMsg = reply.TextMsg(toUser,fromUser,content)
 		return  replyMsg.send()
-	def returnSubscribeMessage(recMsg):
+	def returnSubscribeMessage(self,recMsg):
 		print 1
 		toUser = recMsg.FromUserName
 		fromUser = recMsg.ToUserName
