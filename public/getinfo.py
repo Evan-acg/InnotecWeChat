@@ -4,6 +4,7 @@ import common
 import urllib
 import urllib2
 import json
+import os
 from dboperation import DBOperation
 from jsonoperation import ReadJson
 import sys
@@ -14,9 +15,12 @@ sys.setdefaultencoding("utf-8")
 
 
 class Info(object):
-	def __init__(self, appId, appSecret):
-		self.appId = appId
-		self.appSecret = appSecret
+	def __init__(self):
+		rj = ReadJson()
+		filePath = os.path.dirname(os.path.dirname((os.path.dirname(__file__)))) + "/weChat.json"
+		weChatConfig = rj.readJson(filePath)
+		self.appId = weChatConfig["appId"]
+		self.appSecret = weChatConfig["appSecret"]
 		self.dbo = DBOperation()
 
 	def getAccessToken(self):
