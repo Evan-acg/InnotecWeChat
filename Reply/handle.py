@@ -19,6 +19,7 @@ class Handle:
 		self.pd.run()
 		return "Success!"
 	def returnSessionTime(self,recMsg):
+		print 1
 		toUser = recMsg.FromUserName
 		fromUser = recMsg.ToUserName
 		limitDate = (datetime.datetime.now() + datetime.timedelta(days = 1)).strftime("%Y-%m-%d %H:%M:%S")
@@ -54,7 +55,6 @@ class Handle:
 			elif isinstance(recMsg, receive.Msg) and recMsg.MsgType == "text":
 				return self.returnSessionTime(recMsg)
 			elif isinstance(recMsg, receive.Msg) and recMsg.MsgType == "event" and recMsg.Event == "subscribe":
-				print 1
 				return self.returnSubscribeMessage(recMsg)
 			else:
 				return "Success!"
