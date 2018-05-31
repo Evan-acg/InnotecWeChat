@@ -37,8 +37,8 @@ class Handle:
 							02.自动推送
 								于每天晚上20：00自动推送，收到消息后请回复刷新会话时间，回复任意字符均可
 			"""
-		print content
 		replyMsg = reply.TextMsg(toUser,fromUser,content)
+		print replyMsg.send()
 		gi = Info()
 		gi.mainControl()
 		dbo = DBOperation()
