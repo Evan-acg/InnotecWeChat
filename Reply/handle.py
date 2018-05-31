@@ -36,15 +36,14 @@ class Handle:
 								回复代码SOP01
 							02.自动推送
 								于每天晚上20：00自动推送，收到消息后请回复刷新会话时间，回复任意字符均可
-			"""
+			""".encode("utf-8")
 		replyMsg = reply.TextMsg(toUser,fromUser,content)
-		print replyMsg.send()
 		gi = Info()
 		gi.mainControl()
 		dbo = DBOperation()
 		nickName = dbo.getUserName(toUser)[0][0]
 		newSubscribe = "新用户的OPENID：{0}，用户名是：{1}！".format(toUser, nickName)
-		pd.Push(NewSubscribe)
+		pd.Push(NewSubscribe.encode("utf-8"))
 		return replyMsg.send()
 	def POST(self):
 		try:
