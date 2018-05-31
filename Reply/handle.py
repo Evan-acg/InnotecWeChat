@@ -17,14 +17,14 @@ class Handle:
 		self.pd = PushSaleData()
 	def returnQueryMessage(self):
 		self.pd.run()
-		"Success!"
+		return "Success!"
 	def returnSessionTime(self,recMsg):
 		toUser = recMsg.FromUserName
 		fromUser = recMsg.ToUserName
 		limitDate = (datetime.datetime.now() + datetime.timedelta(days = 1)).strftime("%Y-%m-%d %H:%M:%S")
 		content = u"本次会话到期时间为{0}！".format(limitDate)
 		replyMsg = reply.TextMsg(toUser,fromUser,content)
-		replyMsg.send()
+		return  replyMsg.send()
 	def returnSubscribeMessage(recMsg):
 		toUser = recMsg.FromUserName
 		fromUser = recMsg.ToUserName
@@ -38,26 +38,24 @@ class Handle:
 								于每天晚上20：00自动推送，收到消息后请回复刷新会话时间，回复任意字符均可
 			"""
 		replyMsg = reply.TextMsg(toUser,fromUser,content)
+		print 1
 		gi = Info()
 		gi.mainControl()
 		dbo = DBOperation()
 		nickName = dbo.getUserName(toUser)[0][0]
 		NewSubscribe = "新用户的OPENID：{0}，用户名是：{1}！".format(toUser, nickName)
 		pd.Push(NewSubscribe)
-		replyMsg.send()
+		return replyMsg.send()
 	def POST(self):
 		try:
 			webData = web.data()
 			recMsg = receive.parse_xml(webData)
 			if isinstance(recMsg, receive.Msg) and recMsg.MsgType == "text" and recMsg.Content.upper() == "SOP01":
-				self.returnQueryMessage()
-				return "Success!"
+				return self.returnQueryMessage()
 			elif isinstance(recMsg, receive.Msg) and recMsg.MsgType == "text":
-				self.returnSessionTime(recMsg)
-				return "Success!"
+				return self.returnSessionTime(recMsg)
 			elif isinstance(recMsg, receive.Msg) and recMsg.MsgType == "event" and recMsg.Event == "subscribe":
-				self.returnSubscribeMessage(recMsg)
-				return "Success!"
+				return self.returnSubscribeMessage(recMsg)
 			else:
 				return "Success!"
 		except Exception, Argument:
