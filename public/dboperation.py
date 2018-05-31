@@ -130,10 +130,10 @@ class DBOperation(object):
 		argsCount = len(args)
 		if argsCount == 0:
 			SQL = "SELECT USERID_0,DIMENSION_0,FCY_0 FROM WECHATAUTH"
-		elif argsCount == 2:
+		if argsCount == 1:
 			SQL = """
-				SELECT USERID_0,DIMENSION_0,FCY_0 FROM WECHATAUTH WHERE USERID_0 NOT IN(N'{0}' ) AND DIMENSION_0 NOT IN(N'') AND FCY_0 NOT IN(N'{1}')
-			""".format(OPENID, facility)
+				SELECT USERID_0,DIMENSION_0,FCY_0 FROM WECHATAUTH WHERE USERID_0 =N'{0}'
+			""".format(args[0])
 		return self.dbc.Query(SQL)
 
 

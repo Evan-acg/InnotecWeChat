@@ -23,7 +23,6 @@ class Info(object):
 		url = "https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid={0}&secret={1}".format(self.appId,self.appSecret)
 		page = urllib.urlopen(url).read()
 		pageJson = json.loads(page)
-		print pageJson
 		self.accessToken= pageJson["access_token"]
 		self.dbo.insertAccessToken(self.accessToken)
 
