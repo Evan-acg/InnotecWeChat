@@ -37,13 +37,13 @@ class Handle:
 							02.自动推送
 								于每天晚上20：00自动推送，收到消息后请回复刷新会话时间，回复任意字符均可
 			"""
+		print content
 		replyMsg = reply.TextMsg(toUser,fromUser,content)
 		gi = Info()
 		gi.mainControl()
 		dbo = DBOperation()
 		nickName = dbo.getUserName(toUser)[0][0]
 		newSubscribe = "新用户的OPENID：{0}，用户名是：{1}！".format(toUser, nickName)
-		print newSubscribe
 		pd.Push(NewSubscribe)
 		return replyMsg.send()
 	def POST(self):
