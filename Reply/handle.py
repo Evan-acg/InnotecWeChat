@@ -16,7 +16,7 @@ class Handle:
 	def __init__(self):
 		self.pd = PushSaleData()
 	def returnQueryMessage(self):
-		self.pd.run()
+		self.pd.run(recMsg.FromUserName)
 		return ""
 	def returnSessionTime(self,recMsg):
 		toUser = recMsg.FromUserName
