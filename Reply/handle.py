@@ -17,14 +17,14 @@ class Handle:
 		self.pd = PushSaleData()
 	def returnQueryMessage(self):
 		self.pd.run()
-		return "Success!"
+		"Success!"
 	def returnSessionTime(self,recMsg):
 		toUser = recMsg.FromUserName
 		fromUser = recMsg.ToUserName
 		limitDate = (datetime.datetime.now() + datetime.timedelta(days = 1)).strftime("%Y-%m-%d %H:%M:%S")
 		content = u"本次会话到期时间为{0}！".format(limitDate)
 		replyMsg = reply.TextMsg(toUser,fromUser,content)
-		return	replyMsg.send()
+		replyMsg.send()
 	def returnSubscribeMessage(recMsg):
 		toUser = recMsg.FromUserName
 		fromUser = recMsg.ToUserName
@@ -44,11 +44,10 @@ class Handle:
 		nickName = dbo.getUserName(toUser)[0][0]
 		NewSubscribe = "新用户的OPENID：{0}，用户名是：{1}！".format(toUser, nickName)
 		pd.Push(NewSubscribe)
-		return	replyMsg.send()
+		replyMsg.send()
 	def POST(self):
 		try:
 			webData = web.data()
-			print "Handle Post webdata is ",webData
 			recMsg = receive.parse_xml(webData)
 			if isinstance(recMsg, receive.Msg) and recMsg.MsgType == "text" and recMsg.Content.upper() == "SOP01":
 				self.returnQueryMessage()
