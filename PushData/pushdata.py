@@ -42,6 +42,7 @@ class PushSaleData(ReadConfig):
 			userDict = dbo.getAuthList()
 		elif parameterCount == 1:
 			userDict = dbo.getAuthList(agvs[0])
+		print userDict
 		qd = Query(self.fcyDict)
 		for userName in userDict:
 			OPENID = userName[0]
