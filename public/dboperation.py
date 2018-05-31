@@ -79,7 +79,8 @@ class DBOperation(object):
 		return self.dbc.Query(SQL)
 
 	def getTodaySaleOrderDetails(self, facility, dateRange):
-		SQL = """		SELECT
+		SQL = """		
+					SELECT
 						T3.BPCNAM_0,
 						T4.BPCNAM_0,
 						T1.ITMREF_0,
@@ -87,6 +88,7 @@ class DBOperation(object):
 						CONVERT(DECIMAL(18,2),T1.QTY_0),
 						CONVERT(DECIMAL(18,2),T2.GROPRI_0),
 						CONVERT(DECIMAL(18,2),T1.QTY_0 * T2.GROPRI_0),
+						CONVERT(DECIMAL(18,2),ISNULL(T1.QTY_0 * T2.GROPRI_0 * T5.RATE_0,T1.QTY_0 * T2.GROPRI_0)),
 						T3.BPCORD_0,
 						T3.YBPCSHO_0,
 						T1.ZRMK_0,
@@ -94,13 +96,14 @@ class DBOperation(object):
 						T1.ZCUSNUMLIN_0,
 						CONVERT(INT,T1.SOPLIN_0),
 						T1.SOHNUM_0
-				FROM SORDERQ T1
+					FROM SORDERQ T1
 					LEFT JOIN SORDERP T2 ON T1.SOHNUM_0 = T2.SOHNUM_0 AND T1.SOPLIN_0 = T2.SOPLIN_0
 					LEFT JOIN SORDER T3 ON T1.SOHNUM_0 = T3.SOHNUM_0
 					LEFT JOIN BPCUSTOMER T4 ON T3.YBPCSHO_0 = T4.BPCNUM_0
-				WHERE T1.CREDAT_0 BETWEEN N'{1}' AND N'{1}'
+					LEFT JOIN EXCHANGERATE T5 ON T3.CUR_0 = T5.CURRENCYFROM_0 AND T5.CREDAT_0 = N'{1}'
+					WHERE T1.CREDAT_0 BETWEEN N'{1}' AND N'{1}'
 					AND T1.SALFCY_0 = N'{0}'
-				ORDER BY T1.SOHNUM_0,T1.SOPLIN_0
+					ORDER BY T1.SOHNUM_0,T1.SOPLIN_0
 					""".format(facility,dateRange)
 		return self.dbc.Query(SQL)
 

@@ -1,11 +1,12 @@
 # -*- coding: utf-8 -*-
 # filename: handle.py
 
+import common
 import hashlib
 import web
 from Reply import reply
 from Reply import receive
-from PushData.pushdata import PushData
+from PushData.pushdata import PushSaleData
 
 class Handle:
 	def POST(self):

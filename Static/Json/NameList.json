@@ -2,5 +2,29 @@
 	"罗博文":{
 		"OPENID":"ocwHT08BbAJvZ2Lj9o-fu7JJKWIw",
 		"facility":["0101","0102"]
+	},
+	"李磊":{
+		"OPENID":"ocwHT05Z8pjIcjA5YtrGcoP9LlIs",
+		"facility":["0201"]
+	},
+	"顾蓉蓉":{
+		"OPENID":"ocwHT02aKru4DXzNq0Smg-2VYrWA",
+		"facility":["0101"]
+	},
+	"何少波":{
+		"OPENID":"ocwHT03wD5XTWFHES879v7YV-6eQ",
+		"facility":["0203"]
+	},
+	"俞凯":{
+		"OPENID":"ocwHT0yHEKfRw39oKIPWIYAvWM_Q",
+		"facility":["0101","0102","0201","0202","0203","0301","0401","0501"]
+	},
+	"李俊":{
+		"OPENID":"ocwHT05GGGEaGvKP6NdVhuuyL7bI",
+		"facility":["0301"]
+	},
+	"王晓丽":{
+		"OPENID":"ocwHT09qxLNWr9FZ1pUonlkkLFvc",
+		"facility":["0203"]
 	}
 }
