@@ -37,7 +37,6 @@ class PushSaleData(ReadConfig):
 
 	def run(self, *agvs):
 		parameterCount = len(agvs)
-		print parameterCount
 		dbo = DBOperation()
 		if parameterCount == 0:
 			userDict = dbo.getAuthList()
