@@ -4,6 +4,7 @@
 import common
 import web
 from Reply.handle import Handle
+from PushData.querydata import TodaySaleDetails
 
 
 
