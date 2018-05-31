@@ -29,12 +29,12 @@ class Handle:
 	def returnSubscribeMessage(self,recMsg):
 		toUser = recMsg.FromUserName
 		fromUser = recMsg.ToUserName
-		content = "	欢迎来到亿诺股份公司消息推送系统！\n" +
-					"\t当前实现功能有：\n"+
-					"\t\t1.查询当日当前订单情况\n"+
-					"\t\t\t01.手动查询\n"+
-					"\t\t\t\t回复代码SOP01\n"+
-					"\t\t\t02.自动推送\n"+
+		content = "	欢迎来到亿诺股份公司消息推送系统！\n" + \
+					"\t当前实现功能有：\n"+ \
+					"\t\t1.查询当日当前订单情况\n"+ \
+					"\t\t\t01.手动查询\n"+ \
+					"\t\t\t\t回复代码SOP01\n"+ \
+					"\t\t\t02.自动推送\n"+ \
 					"\t\t\t\t\t于每天晚上20：00自动推送，收到消息后请回复刷新会话时间，回复任意字符均可"
 		replyMsg = reply.TextMsg(toUser,fromUser,content.encode("utf-8"))
 		print replyMsg.send()
