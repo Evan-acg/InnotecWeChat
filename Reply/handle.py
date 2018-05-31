@@ -28,7 +28,6 @@ class Handle:
 	def returnSubscribeMessage(recMsg):
 		toUser = recMsg.FromUserName
 		fromUser = recMsg.ToUserName
-		limitDate = (datetime.datetime.now() + datetime.timedelta(days = 1)).strftime("%Y-%m-%d %H:%M:%S")
 		content = u"""
 				欢迎来到亿诺股份公司消息推送系统！
 					当前实现功能有：
@@ -37,7 +36,7 @@ class Handle:
 								回复代码SOP01
 							02.自动推送
 								于每天晚上20：00自动推送，收到消息后请回复刷新会话时间，回复任意字符均可
-			""".format(limitDate)
+			"""
 		replyMsg = reply.TextMsg(toUser,fromUser,content)
 		gi = Info()
 		gi.mainControl()
@@ -52,11 +51,14 @@ class Handle:
 			print "Handle Post webdata is ",webData
 			recMsg = receive.parse_xml(webData)
 			if isinstance(recMsg, receive.Msg) and recMsg.MsgType == "text" and recMsg.Content.upper() == "SOP01":
-				return self.returnQueryMessage()
+				self.returnQueryMessage()
+				return "Success!"
 			elif isinstance(recMsg, receive.Msg) and recMsg.MsgType == "text":
-				return self.returnSessionTime(recMsg)
+				self.returnSessionTime(recMsg)
+				return "Success!"
 			elif isinstance(recMsg, receive.Msg) and recMsg.MsgType == "event" and recMsg.Event == "subscribe":
-				return self.returnSubscribeMessage(recMsg)
+				self.returnSubscribeMessage(recMsg)
+				return "Success!"
 			else:
 				return "Success!"
 		except Exception, Argument:

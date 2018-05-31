@@ -13,13 +13,12 @@ def pushTo():
 	url = "http://121.46.30.178/wx"
 	xml = """
 		<xml>
-			<ToUserName><![CDATA[公众号]]></ToUserName>
-			 <FromUserName><![CDATA[ocwHT08BbAJvZ2Lj9o-fu7JJKWIw]]></FromUserName>
-			 <CreateTime>1460537339</CreateTime>
-			 <MsgType><![CDATA[text]]></MsgType>
-			 <Content><![CDATA[1]]></Content>
-			 <MsgId>6272960105994287618</MsgId>
-			 </xml>
+			<ToUserName>< ![CDATA[toUser] ]></ToUserName>
+			<FromUserName>< ![CDATA[FromUser] ]></FromUserName>
+			<CreateTime>123456789</CreateTime>
+			<MsgType>< ![CDATA[event] ]></MsgType>
+			<Event>< ![CDATA[subscribe] ]></Event>
+		</xml>
 	"""
 	# soup = BeautifulSoup(xml, "xml")
 	# msgType = soup.find("MsgType").text
