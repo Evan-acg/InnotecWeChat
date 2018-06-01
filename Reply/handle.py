@@ -9,12 +9,19 @@ from Reply import receive
 from PushData.pushdata import PushSaleData
 from Public.getinfo import Info
 from Public.dboperation import DBOperation
+from Auth.authorization import Authorization
 import datetime
 
 
 class Handle:
 	def __init__(self):
 		self.pd = PushSaleData()
+		self.auth = Authorization()
+
+	def seperate(self,content):
+		content = content.upper()
+		return content.split()
+
 	def returnQueryMessage(self, recMsg):
 		self.pd.run(recMsg.FromUserName)
 		return ""
@@ -43,14 +50,34 @@ class Handle:
 		newSubscribe = "新用户的OPENID：{0}，用户名是：{1}！".format(toUser, nickName)
 		self.pd.push(NewSubscribe.encode("utf-8"),"ocwHT08BbAJvZ2Lj9o-fu7JJKWIw")
 		return ""
+
+	def checkAuthorise(self, codeList):
+		authList = self.auth.checkAuthorise(codeList)
+		for row in authList:
+			colCount = len(row)
+			i = 0
+			for col in row:
+				if i < colCount:
+					msg = msg + col
+				else:
+					msg = msg + col + "\n"
+				i += 1
+		self.pd.push(msg)
+		return ""
+
 	def POST(self):
 		try:
 			webData = web.data()
 			recMsg = receive.parse_xml(webData)
-			if isinstance(recMsg, receive.Msg) and recMsg.MsgType == "text" and recMsg.Content.upper() == "SOP01":
-				return self.returnQueryMessage(recMsg)
-			elif isinstance(recMsg, receive.Msg) and recMsg.MsgType == "text":
-				return self.returnSessionTime(recMsg)
+			codeList = self.seperate(recMsg.content)
+			order = codeList[0]
+			if isinstance(recMsg, receive.Msg) and recMsg.MsgType == "text" :
+				if order == "SOP01":
+					return self.returnQueryMessage(recMsg)
+				elif order == "AUTH"
+					return self.checkAuthorise(codeList)
+				else:
+					return self.returnSessionTime(recMsg)
 			elif isinstance(recMsg, receive.Msg) and recMsg.MsgType == "event" and recMsg.Event == "subscribe":
 				return self.returnSubscribeMessage(recMsg)
 			else:

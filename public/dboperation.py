@@ -133,11 +133,18 @@ class DBOperation(object):
 	def getAuthList(self,*args):
 		argsCount = len(args)
 		if argsCount == 0:
-			SQL = "SELECT USERID_0,DIMENSION_0,FCY_0 FROM WECHATAUTH"
-		if argsCount == 1:
 			SQL = """
-				SELECT USERID_0,DIMENSION_0,FCY_0 FROM WECHATAUTH WHERE USERID_0 =N'{0}'
-			""".format(args[0])
+				SELECT T1.USERID_0,T2.USERNAME_0,T1.DIMENSION_0,T1.FCY_0 
+				FROM WECHATAUTH T1
+					LEFT JOIN WECHATUSER T2 ON T1.USERID_0 = T2.USERID_0
+			"""
+		if argsCount == 2:
+			SQL = """
+				SELECT T1.USERID_0,T2.USERNAME_0,T1.DIMENSION_0,T1.FCY_0 
+				FROM WECHATAUTH T1
+					LEFT JOIN WECHATUSER T2 ON T1.USERID_0 = T2.USERID_0
+				WHERE {}
+			""".format(args[0], args[1])
 		return self.dbc.Query(SQL)
 
 
