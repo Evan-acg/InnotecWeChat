@@ -17,8 +17,11 @@ class Authorization:
 		self.dbo.authorize(OPENID, facility)
 	def deauthorize(self):
 		self.dbo.deauthorize()
-	def checkAuthorise(self, order):
-		return self.dbo.getAuthList(order)
+	def checkAuthorise(self, *order):
+                if len(order) == 0:
+                        return self.dbo.getAuthList()
+                else:
+                        return self.dbo.getAuthList(order)
 
 	def run(self):
 		filePath = os.path.dirname((os.path.dirname(__file__))) + "/Static/Json/NameList.json"

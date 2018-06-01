@@ -138,7 +138,14 @@ class DBOperation(object):
 				FROM WECHATAUTH T1
 					LEFT JOIN WECHATUSER T2 ON T1.USERID_0 = T2.USERID_0
 			"""
-		if argsCount == 2:
+                elif argsCount == 1:
+                        SQL = """
+				SELECT T1.USERID_0,T2.USERNAME_0,T1.DIMENSION_0,T1.FCY_0 
+				FROM WECHATAUTH T1
+					LEFT JOIN WECHATUSER T2 ON T1.USERID_0 = T2.USERID_0
+                                WHERE T1.USERID_0 = N'{0}'
+			""".format(args[0])
+		elif argsCount == 2:
 			SQL = """
 				SELECT T1.USERID_0,T2.USERNAME_0,T1.DIMENSION_0,T1.FCY_0 
 				FROM WECHATAUTH T1

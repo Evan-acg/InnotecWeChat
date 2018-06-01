@@ -51,8 +51,12 @@ class Handle:
 		self.pd.push(NewSubscribe.encode("utf-8"),"ocwHT08BbAJvZ2Lj9o-fu7JJKWIw")
 		return ""
 
-	def checkAuthorise(self, codeList):
-		authList = self.auth.checkAuthorise(codeList)
+	def checkAuthorise(self, *args):
+                if len(args) ==0:
+                        authList = self.auth.checkAuthorise()
+                elif len(args) ==1:
+                        authList = self.auth.checkAuthorise(args[0])
+                msg = ""
 		for row in authList:
 			colCount = len(row)
 			i = 0
@@ -69,13 +73,13 @@ class Handle:
 		try:
 			webData = web.data()
 			recMsg = receive.parse_xml(webData)
-			codeList = self.seperate(recMsg.content)
+			codeList = self.seperate(recMsg.Content)
 			order = codeList[0]
 			if isinstance(recMsg, receive.Msg) and recMsg.MsgType == "text" :
 				if order == "SOP01":
 					return self.returnQueryMessage(recMsg)
 				elif order == "AUTH":
-					return self.checkAuthorise(codeList)
+					return self.checkAuthorise()
 				else:
 					return self.returnSessionTime(recMsg)
 			elif isinstance(recMsg, receive.Msg) and recMsg.MsgType == "event" and recMsg.Event == "subscribe":

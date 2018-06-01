@@ -45,8 +45,9 @@ class PushSaleData(ReadConfig):
 		qd = Query(self.fcyDict)
 		for userName in userDict:
 			OPENID = userName[0]
-			facility = userName[2]
+			facility = userName[3]
 			message = qd.querySales(facility)
+			print message
 			self.push(message, OPENID)
 
 
