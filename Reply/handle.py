@@ -74,7 +74,7 @@ class Handle:
 			if isinstance(recMsg, receive.Msg) and recMsg.MsgType == "text" :
 				if order == "SOP01":
 					return self.returnQueryMessage(recMsg)
-				elif order == "AUTH"
+				elif order == "AUTH":
 					return self.checkAuthorise(codeList)
 				else:
 					return self.returnSessionTime(recMsg)
